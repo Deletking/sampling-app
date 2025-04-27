@@ -1,0 +1,70 @@
+<div class="container">
+  <h1>Calculadora de Tamanho de Amostra</h1>
+
+  <mat-card>
+    <form (ngSubmit)="calculate()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>População Total</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="population"
+          name="population"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Margem de Erro (%)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="marginError"
+          name="marginError"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nível de Confiança</mat-label>
+        <mat-select
+          [(ngModel)]="confidenceLevel"
+          name="confidenceLevel"
+          required
+        >
+          <mat-option [value]="90">90%</mat-option>
+          <mat-option [value]="95">95%</mat-option>
+          <mat-option [value]="99">99%</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Proporção Esperada (%)</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="proportion"
+          name="proportion"
+          required
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="full-width"
+        [disabled]="isLoading"
+      >
+        {{ isLoading ? "Calculando..." : "Calcular" }}
+      </button>
+    </form>
+
+    <div *ngIf="sampleSize !== null" class="result">
+      <h2>Resultado:</h2>
+      <p>
+        Tamanho Ideal da Amostra: <strong>{{ sampleSize }}</strong>
+      </p>
+    </div>
+  </mat-card>
+</div>

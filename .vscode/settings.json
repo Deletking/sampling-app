@@ -1,0 +1,51 @@
+{
+  // Configurações globais
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false, // Desativado para evitar formatação invasiva
+  "editor.renderWhitespace": "selection", // Mostra espaços em branco apenas na seleção
+  "editor.wordWrap": "on", // Quebra de linha para melhor legibilidade
+
+  // Configurações específicas por tipo de arquivo
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit" // Executa ESLint no save, se configurado
+    }
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // Configurações recomendadas para Angular
+  "angular.enable-strict-mode-prompt": true, // Ativa prompt para modo estrito
+  "typescript.tsdk": "./node_modules/typescript/lib", // Usa TypeScript do projeto
+  "editor.suggestSelection": "first", // Melhora sugestões no IntelliSense
+  "files.autoSave": "onFocusChange", // Salva automaticamente ao mudar de arquivo
+  "eslint.validate": ["javascript", "typescript"], // Valida JS e TS com ESLint
+  "editor.quickSuggestions": {
+    "strings": true // Habilita sugestões em strings (útil para templates)
+  }
+}
