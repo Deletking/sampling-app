@@ -33,10 +33,7 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "angularCompilerOptions": {
-              "enableExperimentalFeatures": ["inlineNgIf", "inlineNgFor"]
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
