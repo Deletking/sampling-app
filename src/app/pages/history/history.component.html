@@ -1,0 +1,51 @@
+<div class="history-container">
+  <h2>Histórico de Cálculos</h2>
+
+  <div
+    *ngIf="samplingService.history().length === 0; else hasHistory"
+    class="empty"
+  >
+    <p>Não há cálculos registrados ainda.</p>
+  </div>
+
+  <ng-template #hasHistory>
+    <div class="header-actions">
+      <button mat-raised-button color="warn" (click)="clearHistory()">
+        <mat-icon>delete_sweep</mat-icon>
+        Limpar Histórico
+      </button>
+    </div>
+
+    <div class="card-list">
+      <mat-card
+        *ngFor="let item of samplingService.history(); let i = index"
+        class="history-card"
+      >
+        <mat-card-content>
+          <div class="card-info">
+            <p><strong>Resultado:</strong> {{ item.sampleSize }}</p>
+            <p><strong>População:</strong> {{ item.data.population }}</p>
+            <p><strong>Margem de Erro:</strong> {{ item.data.marginError }}%</p>
+            <p>
+              <strong>Nível de Confiança:</strong>
+              {{ item.data.confidenceLevel }}%
+            </p>
+            <p>
+              <strong>Proporção Esperada:</strong> {{ item.data.proportion }}%
+            </p>
+            <p *ngIf="item.createdAt">
+              <strong>Data:</strong>
+              {{ item.createdAt | date : "dd/MM/yyyy HH:mm" }}
+            </p>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button mat-icon-button color="warn" (click)="deleteCalculation(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ng-template>
+</div>

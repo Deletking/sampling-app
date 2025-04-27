@@ -54,16 +54,16 @@
         color="primary"
         type="submit"
         class="full-width"
-        [disabled]="isLoading"
+        [disabled]="isLoading()"
       >
-        {{ isLoading ? "Calculando..." : "Calcular" }}
+        {{ isLoading() ? "Calculando..." : "Calcular" }}
       </button>
     </form>
 
     <div *ngIf="sampleSize !== null" class="result">
       <h2>Resultado:</h2>
       <p>
-        Tamanho Ideal da Amostra: <strong>{{ sampleSize }}</strong>
+        Tamanho Ideal da Amostra: <strong>{{ sampleSize() }}</strong>
       </p>
     </div>
   </mat-card>

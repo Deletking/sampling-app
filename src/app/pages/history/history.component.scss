@@ -1,0 +1,35 @@
+.history-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.empty {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.history-card {
+  position: relative;
+}
+
+.card-info p {
+  margin: 0.5rem 0;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}

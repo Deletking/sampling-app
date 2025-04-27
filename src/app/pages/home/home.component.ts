@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SamplingService } from '../../services/sampling.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
@@ -23,35 +24,28 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  population: number = 0;
-  marginError: number = 5;
-  confidenceLevel: number = 95;
-  proportion: number = 50;
-  sampleSize: number | null = null;
-  isLoading: boolean = false;
+  population = signal(0);
+  marginError = signal(5);
+  confidenceLevel = signal(95);
+  proportion = signal(50);
+  sampleSize = signal<number | null>(null);
+  isLoading = signal(false);
 
   constructor(private samplingService: SamplingService) {}
 
   calculate() {
-    this.isLoading = true;
+    this.isLoading.set(true);
+
     const requestData = {
-      population: this.population,
-      marginError: this.marginError,
-      confidenceLevel: this.confidenceLevel,
-      proportion: this.proportion,
+      population: this.population(),
+      marginError: this.marginError(),
+      confidenceLevel: this.confidenceLevel(),
+      proportion: this.proportion(),
     };
 
-    // Chama o serviço para calcular o tamanho da amostra
-    this.sampleSize = this.samplingService.calculateSampleSize(requestData);
-    this.isLoading = false;
-    // this.samplingService.calculateSampleSize(requestData).subscribe({
-    //   next: (response) => {
-    //     this.sampleSize = response.sampleSize;
-    //   },
-    //   error: (error) => {
-    //     console.error('Error calculating sample size:', error);
-    //     this.isLoading = false;
-    //   },
-    // });
+    const result = this.samplingService.calculateSampleSize(requestData);
+    this.sampleSize.set(result);
+
+    this.isLoading.set(false);
   }
 }
