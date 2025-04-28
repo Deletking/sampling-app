@@ -1,16 +1,17 @@
 import { Injectable, signal } from '@angular/core';
+import { SamplingCalculationData, SamplingHistoryEntry } from './models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SamplingService {
-  history = signal<any[]>([]);
+  history = signal<SamplingHistoryEntry[]>([]);
 
   constructor() {
     this.loadHistory();
   }
 
-  calculateSampleSize(data: any): number {
+  calculateSampleSize(data: SamplingCalculationData): number {
     const { population, marginError, confidenceLevel, proportion } = data;
 
     const Z = this.getZValue(confidenceLevel);
@@ -43,7 +44,7 @@ export class SamplingService {
     }
   }
 
-  private addToHistory(calculation: any): void {
+  private addToHistory(calculation: SamplingHistoryEntry): void {
     const currentHistory = this.history();
     const updatedHistory = [calculation, ...currentHistory];
     this.history.set(updatedHistory);
