@@ -7,19 +7,27 @@
   "editor.renderWhitespace": "selection", // Mostra espaços em branco apenas na seleção
   "editor.wordWrap": "on", // Quebra de linha para melhor legibilidade
 
+  // Ações automáticas ao salvar
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true, // Organiza e remove imports não usados
+    "source.fixAll": true // Corrige todos os erros possíveis (incluindo ESLint)
+  },
+
   // Configurações específicas por tipo de arquivo
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit" // Executa ESLint no save, se configurado
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": true
     }
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": true
     }
   },
   "[html]": {
